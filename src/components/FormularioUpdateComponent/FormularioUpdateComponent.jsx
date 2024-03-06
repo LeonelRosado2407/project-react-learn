@@ -1,33 +1,36 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
+import { useLocation } from 'react-router-dom';
 
-
-function FomrularioComponent() {
-
-    const MySwal = withReactContent(Swal)
-
-    const [email, setEmail] = useState();
-    const [nombre, setNombre] = useState();
+function FormularioUpdateComponent(){
+    const location = useLocation();
+    const[idUser , setidUser] = useState();
+    const [email, setemail] = useState();
+    const [nombre, setnombre] = useState();
     const [edad, setEdad] = useState();
+    console.log(location);
 
     const ObjectForm = {
+        _id : idUser,
         name : nombre,
         email : email,
         age : edad
     }
 
     const opciones= {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(ObjectForm),
     }
     
+    const MySwal = withReactContent(Swal)
+
     const enviarDatos = ()=>{
         console.log(ObjectForm);
-        if (email === undefined || email === ''|| nombre === undefined || nombre=== ''|| edad === undefined || edad === '') {
+        if (email === undefined || email === ''|| nombre === undefined || nombre=== ''|| edad === undefined || edad === '' || idUser === undefined || idUser === '') {
             console.log("Faltan datos");
 
             MySwal.fire({
@@ -36,6 +39,7 @@ function FomrularioComponent() {
                         {email === undefined || email === '' ? ' Email' : ''}
                         {nombre === undefined || nombre === ''? ' Nombre' : ''}
                         {edad === undefined || edad === '' ? ' Edad' : ''}
+                        {idUser === undefined || idUser === '' ? ' Id' : ''}
                     </p>,
                 icon: 'warning',
                 confirmButtonText: 'Ok',
@@ -43,7 +47,7 @@ function FomrularioComponent() {
             })
             return;
         }
-        fetch("http://localhost:3000/agregarUsuario", opciones)
+        fetch(`http://localhost:3000/actualizarUsuario/${idUser}`, opciones)
         .then((response)=>{
             console.log("Enviado");
             if (response.ok) {
@@ -78,10 +82,30 @@ function FomrularioComponent() {
         });
     }
 
-    return (
+return (
         <div className="w-full max-w-[950px] p-4 rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700">
-            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Agregar un Nuevo <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Usuario</mark></h1>
+            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Editar un <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Usuario</mark></h1>
             <form className="space-y-6">
+            <div className="relative z-0 w-full mb-5 group">
+                    <input
+                        type="text"
+                        name="_id"
+                        id="_id"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        required
+                        onChange={(e)=>{
+                            setidUser(e.target.value)
+                        }}
+                    />
+                    <label
+                        htmlFor="email"
+                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                        Id del Registro
+                    </label>
+                </div>
+
                 <div className="relative z-0 w-full mb-5 group">
                     <input
                         type="email"
@@ -91,7 +115,7 @@ function FomrularioComponent() {
                         placeholder=" "
                         required
                         onChange={(e)=>{
-                            setEmail(e.target.value)
+                            setemail(e.target.value)
                         }}
                     />
                     <label
@@ -110,7 +134,7 @@ function FomrularioComponent() {
                         placeholder=" "
                         required
                         onChange={(e)=>{
-                            setNombre(e.target.value)
+                            setnombre(e.target.value)
                         }}
                     />
                     <label
@@ -153,4 +177,5 @@ function FomrularioComponent() {
 
     );
 }
-export default FomrularioComponent;
+
+export default FormularioUpdateComponent;
