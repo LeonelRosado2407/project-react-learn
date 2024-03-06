@@ -1,21 +1,30 @@
-import TablaUsersComponent from "./components/tablaUsersComponent/tablaUsersComponent";
-import ContadorComponent from "./components/contadorComponent/contadorComponent";
-import ApirestComponent from "./components/apirestComponent/apirestComponent";
-import ListUsersMongoComponent from "./components/ListUsersMongoComponent/ListUsersMongoComponent";
-import FomrularioComponent from "./components/FormularioComponent/FormularioComponent";
+//router 
+import { BrowserRouter,Route,Routes } from "react-router-dom";
+
+//Páginas
+import ListUsersMongoComponent from "./components/ListUsersMongoComponent/ListUsersMongoComponent"
+import FormularioComponent from "./components/FormularioComponent/FormularioComponent"
+import Home from "./pages/Home";
+import MongoPracticas from "./pages/MongoPRacticas";
+
+import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
+
 function App() {
-
-
   return (
-    <div className=" min-w-screen min-h-screen bg-gray-900 p-10 flex flex-col justify-center items-center">
-      {/* <TablaUsersComponent></TablaUsersComponent> */}
-      {/* <ContadorComponent></ContadorComponent> */}
-      {/* <ApirestComponent></ApirestComponent> */}
-      <FomrularioComponent></FomrularioComponent>
-      <ListUsersMongoComponent></ListUsersMongoComponent>
-
-      
-    </div>
+    
+      <div className="bg-gray-800 min-h-screen min-w-full">
+        <BrowserRouter>
+          <NavbarComponent />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* mongoPracticas */}
+            <Route path="/mongodbPracticas" element={<MongoPracticas />} />
+            <Route path="/UsuariosMongo" element={<ListUsersMongoComponent />} />
+            <Route path="/UsuariosMongo/AgregarUsuario" element={<FormularioComponent />} />
+            {/* finMongoPRacticas */}
+          </Routes>
+        </BrowserRouter>
+      </div>
   );
 }
 
