@@ -6,7 +6,7 @@ function Home() {
     <section className="bg-white dark:bg-gray-900 min-h-screen">
         <div className="py-8 px-4 mx-auto max-w-full lg:py-16">
 
-            <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8">
+            <div className="bg-gray-800  borderborder-gray-700 rounded-lg p-8 md:p-12 mb-8">
                 <h1 className="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2">Bienvenido a mi sitio de prácticas de react</h1>
                 <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-6">Soy Nuevo en react</p>
             </div>

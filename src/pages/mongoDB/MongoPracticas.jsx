@@ -68,7 +68,7 @@ function MongoPracticas() {
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                         Usando el Put
                     </p>
-                    <Link to="/UsuariosMongo/ActualizarUsuario/formulario-update:">
+                    <Link to="/UsuariosMongo/ActualizarUsuario">
                         <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                             Actualizar Usuarios
                             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"viewBox="0 0 14 10">
